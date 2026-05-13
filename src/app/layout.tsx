@@ -4,23 +4,21 @@ import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 
 export const metadata: Metadata = {
-  title: "Mobee · 모두의 AI 비서",
+  title: "Mobee · 나에게 맞는 AI 비서 매칭 플랫폼",
   description:
-    "따로 또 같이 — 개인의 비서이자, 모두를 잇는 비서. 강사·교육자·소규모 팀을 위한 AI 비서 + 협업 허브 Mobee.",
+    "Mobee는 비서 앱이 아닙니다. 검증된 AI 비서를 찾고, 맞춤 제작을 의뢰하고, 바로 구매해 쓰는 매칭 플랫폼. 모두에게 자기에게 맞는 비서를 연결해드려요.",
   keywords: [
     "Mobee",
     "모비",
-    "AI 비서",
-    "AI 에이전트",
-    "협업 허브",
-    "강사",
-    "교육자",
-    "온라인 교무실",
+    "AI 비서 매칭",
+    "AI 에이전트 마켓",
+    "AI 비서 제작 의뢰",
+    "에이전트 플랫폼",
     "자동화",
   ],
   openGraph: {
-    title: "Mobee · 모두의 AI 비서",
-    description: "Buzzing with Ideas, Together — 부지런한 꿀벌이 만드는 변화",
+    title: "Mobee · 나에게 맞는 AI 비서 매칭 플랫폼",
+    description: "검증된 AI 비서를 찾고, 만들고, 연결해주는 플랫폼",
     type: "website",
     locale: "ko_KR",
   },

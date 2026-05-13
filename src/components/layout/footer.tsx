@@ -48,8 +48,8 @@ export function Footer() {
           <div className="col-span-2 md:col-span-1">
             <Logo />
             <p className="mt-4 text-sm text-ink-500 leading-relaxed">
-              따로 또 같이 — 개인의 비서이자,<br />
-              모두를 잇는 AI. Mobee.
+              나에게 맞는 AI 비서를 찾고,<br />
+              만들고, 연결해주는 매칭 플랫폼.
             </p>
             <p className="mt-3 text-xs text-ink-400 italic">
               Buzzing with Ideas, Together

@@ -8,16 +8,12 @@ import {
   Shield,
   Zap,
   CheckCircle2,
-  User,
-  GitBranch,
-  Globe2,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import { CategoryGrid } from "@/components/category-grid";
 import { AgentCard } from "@/components/agent-card";
-import { BeeMark } from "@/components/layout/logo";
 import { categories } from "@/data/categories";
 import { agents, getHotAgents } from "@/data/agents";
 import { posts } from "@/data/community";
@@ -47,18 +43,18 @@ export default function Home() {
           <div className="max-w-3xl mx-auto text-center">
             <Badge variant="brand" className="mb-5 inline-flex items-center gap-1.5 px-3 py-1.5 text-sm">
               <Sparkles className="h-3.5 w-3.5" />
-              부지런한 꿀벌이 만드는 변화, 모두가 만드는 미래
+              모두를 위한 AI 비서 매칭 플랫폼
             </Badge>
             <h1 className="text-4xl md:text-6xl font-extrabold text-ink-900 leading-tight tracking-tight text-balance">
-              모두의 AI 비서,<br />
+              나에게 맞는 AI 비서,<br />
               <span className="relative inline-block">
                 <span className="relative z-10">Mobee</span>
                 <span className="absolute bottom-1 left-0 right-0 h-3 md:h-4 bg-brand -z-0" />
-              </span>
+              </span>에서
             </h1>
             <p className="mt-5 text-base md:text-lg text-ink-500 leading-relaxed">
-              따로 또 같이 — 개인의 비서이자, 모두를 잇는 비서.<br className="hidden md:block" />
-              강사·교육자·소규모 팀을 위한 AI 비서 + 협업 허브.
+              Mobee는 비서 앱이 아니에요. <strong className="text-ink-900">검증된 AI 비서를 찾고,<br className="hidden md:block" />
+              맞춤 제작을 의뢰하고, 바로 구매해 쓰는 매칭 플랫폼</strong>입니다.
             </p>
 
             {/* Search Bar */}
@@ -78,12 +74,12 @@ export default function Home() {
                   <Search className="h-5 w-5 text-ink-400" />
                   <input
                     type="text"
-                    placeholder="어떤 비서가 필요하세요? 예) 수업자료 제작"
+                    placeholder="어떤 일을 맡길 비서를 찾으세요? 예) 수업자료 제작"
                     className="flex-1 bg-transparent text-base placeholder:text-ink-400 focus:outline-none py-3"
                   />
                 </div>
                 <Button variant="brand" size="lg" className="rounded-xl">
-                  Mobee 시작하기
+                  비서 찾기
                 </Button>
               </div>
 
@@ -105,15 +101,15 @@ export default function Home() {
             <div className="mt-12 grid grid-cols-3 max-w-xl mx-auto gap-4">
               <div className="text-center">
                 <div className="text-2xl md:text-3xl font-extrabold text-ink-900">8,152+</div>
-                <div className="text-xs md:text-sm text-ink-500 mt-1">활동 비서</div>
+                <div className="text-xs md:text-sm text-ink-500 mt-1">등록된 AI 비서</div>
               </div>
               <div className="text-center">
-                <div className="text-2xl md:text-3xl font-extrabold text-ink-900">12,800+</div>
-                <div className="text-xs md:text-sm text-ink-500 mt-1">강사·교육자</div>
+                <div className="text-2xl md:text-3xl font-extrabold text-ink-900">1,800+</div>
+                <div className="text-xs md:text-sm text-ink-500 mt-1">검증된 제작자</div>
               </div>
               <div className="text-center">
-                <div className="text-2xl md:text-3xl font-extrabold text-ink-900">4.86</div>
-                <div className="text-xs md:text-sm text-ink-500 mt-1">평균 만족도</div>
+                <div className="text-2xl md:text-3xl font-extrabold text-ink-900">128,500+</div>
+                <div className="text-xs md:text-sm text-ink-500 mt-1">매칭 완료</div>
               </div>
             </div>
           </div>
@@ -155,16 +151,17 @@ export default function Home() {
               왜 <span className="text-brand">Mobee</span>인가요?
             </h2>
             <p className="text-ink-300 max-w-2xl mx-auto">
-              다섯 글자에 담긴 다섯 가지 약속. 모비는 단순한 비서가 아니에요.
+              다섯 글자에 담긴 다섯 가지 약속.<br />
+              Mobee는 비서 앱이 아닌, 모든 비서가 모이는 <strong className="text-white">연결 플랫폼</strong>이에요.
             </p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 gap-3 md:gap-4 max-w-5xl mx-auto">
             {[
-              { letter: "M", word: "My", korean: "나의", desc: "일정·메모·문서를 능동적으로 챙기는 나만의 비서" },
-              { letter: "O", word: "Our", korean: "우리의", desc: "동료·학생·가족과 자연스럽게 연결되는 협업 허브" },
-              { letter: "B", word: "Bridge", korean: "잇는", desc: "개인과 팀, 도구와 도구를 매끄럽게 잇는 다리" },
-              { letter: "E", word: "Everyone", korean: "모두를", desc: "AI 격차 없이 누구나 부담 없이 쓰는 보편적 도구" },
-              { letter: "E", word: "Empowerment", korean: "역량 강화", desc: "혼자서도 함께서도 더 잘할 수 있게 돕는 동반자" },
+              { letter: "M", word: "My", korean: "나의", desc: "내 업무·취향에 딱 맞는 비서를 찾아 연결해드려요" },
+              { letter: "O", word: "Our", korean: "우리의", desc: "수천 명 제작자가 만든 비서가 한자리에 모이는 마켓" },
+              { letter: "B", word: "Bridge", korean: "잇는", desc: "사용자와 제작자, 비서와 일을 매끄럽게 잇는 다리" },
+              { letter: "E", word: "Everyone", korean: "모두를", desc: "AI 격차 없이 누구나 부담 없이 쓰는 비서 플랫폼" },
+              { letter: "E", word: "Empowerment", korean: "역량 강화", desc: "딱 맞는 비서로 모두가 더 잘 일할 수 있게" },
             ].map((item) => (
               <div key={item.word} className="p-5 rounded-xl bg-white/5 border border-white/10 hover:bg-brand hover:text-ink-900 hover:border-brand transition-colors group">
                 <div className="text-5xl font-extrabold text-brand group-hover:text-ink-900 mb-2 leading-none">
@@ -185,68 +182,78 @@ export default function Home() {
       <section className="py-16 md:py-24">
         <div className="container">
           <div className="text-center mb-12">
+            <Badge variant="soft" className="mb-3">플랫폼이 작동하는 방식</Badge>
             <h2 className="text-2xl md:text-3xl font-extrabold text-ink-900">
-              Mobee의 세 가지 얼굴
+              Mobee가 비서를 연결하는 세 가지 방법
             </h2>
             <p className="mt-2 text-ink-500">
-              혼자 일할 때도, 함께 일할 때도 — 흐름이 끊기지 않아요
+              찾기·의뢰·구매 — 원하는 방식대로 골라서 비서를 만나보세요
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
             {[
               {
-                icon: <User className="h-7 w-7" />,
-                emoji: "🐝",
-                tag: "My Mobee",
-                title: "개인의 비서",
+                emoji: "🔍",
+                tag: "Find",
+                title: "검증된 비서 찾기",
                 color: "bg-brand",
-                desc: "일정·메일·메모·문서까지 — 자연어로 말하면 모비가 알아서 처리합니다. 학습 노트, 음성 요약, 개인 컨텍스트 기억 기능 제공.",
-                features: ["일정 자동 정리", "강의 자료 초안", "음성→요약 노트"],
+                desc: "8천여 개 AI 비서 중 평점·리뷰·실사용 데이터로 검증된 비서를 카테고리·플랫폼별로 골라보세요. 마음에 들면 즉시 사용.",
+                features: ["12개 카테고리 × 8천+ 비서", "평점·리뷰 검증 시스템", "플랫폼별 필터"],
+                href: "/agents",
+                cta: "비서 찾으러 가기",
               },
               {
-                icon: <GitBranch className="h-7 w-7" />,
-                emoji: "🏠",
-                tag: "Mobee Hive",
-                title: "연결의 비서",
+                emoji: "🛠️",
+                tag: "Build",
+                title: "맞춤 비서 의뢰",
                 color: "bg-ink-900 text-white",
-                desc: "팀 워크스페이스, 공유 캘린더, 공동 문서를 모비가 동시에 조율합니다. 온라인 교무실처럼 자연스럽게.",
-                features: ["팀 워크스페이스", "공유 캘린더 자동 조율", "Mobee 봇 채널"],
+                desc: "필요한 비서가 없다면 요청서를 올려보세요. 1,800명 검증 제작자가 평균 30분 내 맞춤 제안을 보내드려요.",
+                features: ["요청서 4단계 작성", "평균 30분 내 첫 제안", "에스크로 안전 결제"],
+                href: "/request",
+                cta: "비서 의뢰하기",
               },
               {
-                icon: <Globe2 className="h-7 w-7" />,
-                emoji: "🌍",
-                tag: "Our AI",
-                title: "모두의 비서",
+                emoji: "🛍️",
+                tag: "Buy",
+                title: "완성품 즉시 구매",
                 color: "bg-cream",
-                desc: "AI 격차 없는 세상을 만듭니다. 교사·비영리·소규모 팀까지 누구나 부담 없이 쓰는 보편적 AI.",
-                features: ["교육·NGO 50% 할인", "Free 플랜 제공", "쉬운 한국어 UI"],
+                desc: "완성된 AI 비서를 마켓에서 바로 구매해 쓰세요. 무료·구독·단건까지 — 가격 부담 없이 비서를 곧바로 가동.",
+                features: ["847개 무료 비서", "구독·단건 자유 선택", "n8n·GPT·Make 호환"],
+                href: "/market",
+                cta: "마켓 둘러보기",
               },
             ].map((v) => {
               const isDark = v.color.includes("ink-900");
               return (
-                <Card key={v.title} className={`${v.color} p-7 border-0 hover:shadow-xl transition-all relative overflow-hidden`}>
-                  <Hexagon className={`absolute -top-4 -right-4 w-24 h-24 ${isDark ? "fill-brand opacity-30" : "fill-ink-900 opacity-5"}`} />
-                  <div className="relative">
-                    <div className="text-4xl mb-4">{v.emoji}</div>
-                    <Badge variant={isDark ? "brand" : "outline"} className={`mb-3 ${!isDark && "bg-white"}`}>
-                      {v.tag}
-                    </Badge>
-                    <h3 className={`text-2xl font-extrabold mb-3 ${isDark ? "text-white" : "text-ink-900"}`}>
-                      {v.title}
-                    </h3>
-                    <p className={`text-sm leading-relaxed mb-5 ${isDark ? "text-ink-200" : "text-ink-700"}`}>
-                      {v.desc}
-                    </p>
-                    <ul className="space-y-1.5">
-                      {v.features.map((f) => (
-                        <li key={f} className={`flex items-center gap-2 text-sm font-medium ${isDark ? "text-white" : "text-ink-900"}`}>
-                          <CheckCircle2 className={`h-4 w-4 shrink-0 ${isDark ? "text-brand" : "text-ink-900"}`} />
-                          {f}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </Card>
+                <Link key={v.title} href={v.href} className="group">
+                  <Card className={`${v.color} p-7 border-0 hover:shadow-xl hover:-translate-y-1 transition-all relative overflow-hidden h-full`}>
+                    <Hexagon className={`absolute -top-4 -right-4 w-24 h-24 ${isDark ? "fill-brand opacity-30" : "fill-ink-900 opacity-5"}`} />
+                    <div className="relative flex flex-col h-full">
+                      <div className="text-4xl mb-4">{v.emoji}</div>
+                      <Badge variant={isDark ? "brand" : "outline"} className={`mb-3 self-start ${!isDark && "bg-white"}`}>
+                        {v.tag}
+                      </Badge>
+                      <h3 className={`text-2xl font-extrabold mb-3 ${isDark ? "text-white" : "text-ink-900"}`}>
+                        {v.title}
+                      </h3>
+                      <p className={`text-sm leading-relaxed mb-5 ${isDark ? "text-ink-200" : "text-ink-700"}`}>
+                        {v.desc}
+                      </p>
+                      <ul className="space-y-1.5 mb-6">
+                        {v.features.map((f) => (
+                          <li key={f} className={`flex items-center gap-2 text-sm font-medium ${isDark ? "text-white" : "text-ink-900"}`}>
+                            <CheckCircle2 className={`h-4 w-4 shrink-0 ${isDark ? "text-brand" : "text-ink-900"}`} />
+                            {f}
+                          </li>
+                        ))}
+                      </ul>
+                      <div className={`mt-auto inline-flex items-center gap-1 text-sm font-bold ${isDark ? "text-brand" : "text-ink-900"} group-hover:gap-2 transition-all`}>
+                        {v.cta}
+                        <ArrowRight className="h-4 w-4" />
+                      </div>
+                    </div>
+                  </Card>
+                </Link>
               );
             })}
           </div>
@@ -284,40 +291,40 @@ export default function Home() {
       <section className="py-16 md:py-20">
         <div className="container">
           <div className="text-center mb-10">
-            <Badge variant="soft" className="mb-3">실제 활용 시나리오</Badge>
+            <Badge variant="soft" className="mb-3">매칭 사례</Badge>
             <h2 className="text-2xl md:text-3xl font-extrabold text-ink-900">
-              이런 분들이 Mobee로 야근을 줄였어요
+              이렇게 비서를 만났어요
             </h2>
-            <p className="mt-2 text-ink-500">강사·교육자부터 소규모 팀까지, 현장에서 검증된 사례</p>
+            <p className="mt-2 text-ink-500">Mobee에서 딱 맞는 AI 비서를 찾아 일이 가벼워진 분들</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
             {[
               {
                 emoji: "🎓",
                 title: "20년차 교사 김선생",
-                useCase: "야근 50% 감소",
-                desc: "수업자료 초안 + 동료와 실시간 공유까지 통합 운영",
+                useCase: "수업자료 비서 매칭",
+                desc: "8개 비서 비교 후 도입 → 야근 50% 감소",
                 tone: "white",
               },
               {
                 emoji: "🎤",
                 title: "1인 강의사업자 박강사",
-                useCase: "콘텐츠 + 운영 통합",
-                desc: "강의 콘텐츠 제작, 수강생 관리, SNS 마케팅을 하나로",
+                useCase: "맞춤 비서 제작 의뢰",
+                desc: "30분 만에 5건 제안 → 콘텐츠 운영 통합",
                 tone: "brand",
               },
               {
                 emoji: "🤝",
                 title: "비영리 운영자 이대표",
-                useCase: "단체 운영비 70% 절감",
-                desc: "직원 5명 + 자원봉사 30명 협업을 저렴하게",
+                useCase: "무료 비서 5종 활용",
+                desc: "마켓에서 무료 비서 조합 → 운영비 70% ↓",
                 tone: "ink",
               },
               {
                 emoji: "🛒",
                 title: "쇼핑몰 운영자",
-                useCase: "CS 응답 12분 → 1분",
-                desc: "월 매출 3억 셀러도 CS 인력 70% 절감",
+                useCase: "CS 비서 즉시 구매",
+                desc: "마켓에서 베스트셀러 도입 → 응답 12분→1분",
                 tone: "cream",
               },
             ].map((item) => {
@@ -418,17 +425,17 @@ export default function Home() {
             <div className="absolute top-20 right-32 w-12 h-12 bg-brand rounded-full opacity-80 hidden md:block" />
             <div className="absolute top-10 right-10 text-9xl opacity-10">🤖</div>
             <div className="relative max-w-2xl">
-              <Badge variant="brand" className="mb-5">제작자 모집 · Mobee Pollen</Badge>
+              <Badge variant="brand" className="mb-5">제작자 모집</Badge>
               <h2 className="text-3xl md:text-5xl font-extrabold leading-tight mb-5">
-                강의 자료·AI 비서를 만드시나요?<br />
-                <span className="text-brand">Mobee에서 수익화</span>하세요
+                AI 비서를 만드시나요?<br />
+                <span className="text-brand">Mobee에 등록하고 수익화</span>하세요
               </h2>
               <p className="text-ink-200 text-base md:text-lg mb-8 leading-relaxed">
-                이미 1,800명의 강사·제작자가 활동 중이에요. 시장 평균 30~40% 대비<br />
-                <strong className="text-white">수수료 15~20%</strong>로 더 많이 가져가세요.
+                이미 1,800명의 제작자가 Mobee 플랫폼에서 활동 중이에요.<br />
+                시장 평균 30~40% 대비 <strong className="text-white">수수료 15~20%</strong>로 더 많이 가져가세요.
               </p>
               <div className="flex flex-wrap gap-3 mb-8">
-                {["수수료 15~20%", "강의자료·AI 비서 모두 OK", "Edu·NGO 50% 할인 연동", "추천 큐레이션 노출"].map((b) => (
+                {["수수료 15~20%", "찾기·의뢰·마켓 동시 노출", "에스크로 안전 정산", "추천 큐레이션 가산점"].map((b) => (
                   <div key={b} className="flex items-center gap-2 text-sm">
                     <CheckCircle2 className="h-4 w-4 text-brand" />
                     <span>{b}</span>

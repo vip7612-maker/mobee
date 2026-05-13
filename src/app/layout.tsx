@@ -4,9 +4,26 @@ import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 
 export const metadata: Metadata = {
-  title: "모두의비서 - 모든 영역에 나만의 AI 비서를",
-  description: "AI 에이전트 매칭 플랫폼. 업무, 마케팅, CS, 분석까지 - 내게 꼭 맞는 AI 비서를 찾고 의뢰하세요.",
-  keywords: ["AI 에이전트", "AI 비서", "자동화", "n8n", "GPT", "챗봇", "업무자동화"],
+  title: "Mobee · 모두의 AI 비서",
+  description:
+    "따로 또 같이 — 개인의 비서이자, 모두를 잇는 비서. 강사·교육자·소규모 팀을 위한 AI 비서 + 협업 허브 Mobee.",
+  keywords: [
+    "Mobee",
+    "모비",
+    "AI 비서",
+    "AI 에이전트",
+    "협업 허브",
+    "강사",
+    "교육자",
+    "온라인 교무실",
+    "자동화",
+  ],
+  openGraph: {
+    title: "Mobee · 모두의 AI 비서",
+    description: "Buzzing with Ideas, Together — 부지런한 꿀벌이 만드는 변화",
+    type: "website",
+    locale: "ko_KR",
+  },
 };
 
 export default function RootLayout({
@@ -16,6 +33,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko">
+      <head>
+        <link
+          rel="stylesheet"
+          as="style"
+          crossOrigin=""
+          href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css"
+        />
+      </head>
       <body className="font-sans">
         <Header />
         <main className="min-h-[calc(100vh-4rem)]">{children}</main>

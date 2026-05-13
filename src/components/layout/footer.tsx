@@ -48,7 +48,11 @@ export function Footer() {
           <div className="col-span-2 md:col-span-1">
             <Logo />
             <p className="mt-4 text-sm text-ink-500 leading-relaxed">
-              모든 영역에 나만의 AI 비서를. AI 에이전트 매칭 플랫폼 모두의비서입니다.
+              따로 또 같이 — 개인의 비서이자,<br />
+              모두를 잇는 AI. Mobee.
+            </p>
+            <p className="mt-3 text-xs text-ink-400 italic">
+              Buzzing with Ideas, Together
             </p>
           </div>
           {sections.map((section) => (
@@ -72,9 +76,9 @@ export function Footer() {
 
         <div className="mt-12 pt-8 border-t border-ink-100 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
           <div className="text-xs text-ink-400 space-y-1">
-            <p>(주)모두의비서 | 대표 김에이아이 | 사업자등록번호 123-45-67890</p>
+            <p>(주)Mobee | 대표 김에이아이 | 사업자등록번호 123-45-67890</p>
             <p>서울특별시 강남구 테헤란로 123 | 통신판매업신고 2026-서울강남-0001</p>
-            <p>고객센터 1588-0000 | help@modulbiseo.kr</p>
+            <p>고객센터 1588-0000 | hello@mobee.kr</p>
           </div>
           <div className="flex gap-4 text-xs text-ink-500">
             <Link href="/terms" className="hover:text-ink-900">이용약관</Link>
@@ -83,7 +87,7 @@ export function Footer() {
           </div>
         </div>
         <p className="mt-8 text-xs text-ink-400">
-          © 2026 Modul Biseo Corp. All rights reserved.
+          © 2026 Mobee Inc. All rights reserved. 🐝
         </p>
       </div>
     </footer>

@@ -2,16 +2,16 @@
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
-import Image from "next/image";
-import { ShoppingBag, TrendingUp, Sparkles, Gift, ArrowRight, Lock } from "lucide-react";
+import { ShoppingBag, TrendingUp, Sparkles, Gift, ArrowRight, Lock, Cpu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { AgentCard } from "@/components/agent-card";
 import { LoginGate } from "@/components/login-gate";
+import { BeeMark } from "@/components/layout/logo";
 import { agents, getHotAgents, getNewAgents, getFreeAgents } from "@/data/agents";
 import { categories } from "@/data/categories";
-import { formatPrice, formatCount, cn, getPortrait, getPersonaName } from "@/lib/utils";
+import { formatPrice, formatCount, cn, getPersonaName, getPersonaFull, getPersonaCode } from "@/lib/utils";
 
 type Tab = "all" | "hot" | "new" | "free";
 
@@ -99,32 +99,52 @@ export default function MarketPage() {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
             {topPicks.map((agent, i) => {
-              const portrait = getPortrait(agent.id);
               const persona = getPersonaName(agent.id);
+              const full = getPersonaFull(agent.id);
+              const code = getPersonaCode(agent.id);
+              const bg = i === 0 ? "bg-brand" : "bg-ink-900";
+              const textColor = i === 0 ? "text-ink-900" : "text-brand";
+              const subColor = i === 0 ? "text-ink-900/60" : "text-white/50";
+              const grid = i === 0 ? "rgba(33,33,33,0.08)" : "rgba(255,193,7,0.08)";
+              const beeOpacity = i === 0 ? "opacity-50" : "opacity-40";
               return (
                 <Card key={agent.id} className="relative overflow-hidden hover:shadow-xl transition-all group">
                   <Link href={`/market/${agent.id}`}>
-                    <div className="absolute top-3 left-3 z-10 w-10 h-10 rounded-full bg-brand text-ink-900 font-extrabold text-lg flex items-center justify-center shadow-lg">
+                    <div className="absolute top-3 left-3 z-20 w-10 h-10 rounded-full bg-brand text-ink-900 font-extrabold text-lg flex items-center justify-center shadow-lg">
                       {i + 1}
                     </div>
-                    <div className="aspect-[16/10] relative bg-ink-50 overflow-hidden">
-                      <Image
-                        src={portrait}
-                        alt={persona}
-                        fill
-                        sizes="(max-width: 768px) 100vw, 33vw"
-                        className="object-cover group-hover:scale-[1.03] transition-transform duration-500"
+                    <div className={`aspect-[16/10] relative ${bg} overflow-hidden`}>
+                      <div
+                        className="absolute inset-0 opacity-60"
+                        style={{
+                          backgroundImage: `linear-gradient(${grid} 1px, transparent 1px), linear-gradient(90deg, ${grid} 1px, transparent 1px)`,
+                          backgroundSize: "28px 28px",
+                        }}
                       />
-                      <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-ink-900/85 via-ink-900/30 to-transparent p-4 pt-16">
-                        <div className="text-[11px] text-white/80">{agent.category}</div>
-                        <div className="font-bold text-white text-lg mt-0.5">{persona}</div>
+                      <div className="absolute inset-0 flex flex-col items-center justify-center group-hover:scale-[1.04] transition-transform duration-500">
+                        <BeeMark className={`h-9 w-9 mb-2 ${beeOpacity}`} />
+                        <div className={`text-[10px] font-mono tracking-[0.3em] uppercase ${subColor}`}>
+                          Mobee Model
+                        </div>
+                        <div className={`font-extrabold text-6xl tracking-tight ${textColor} mt-1`}>
+                          {code}
+                        </div>
+                        <div className={`mt-2 flex items-center gap-1 text-[10px] font-mono ${subColor}`}>
+                          <Cpu className="h-2.5 w-2.5" />
+                          AI · {agent.platforms[0] || "GPT-4"}
+                        </div>
                       </div>
                     </div>
                     <div className="px-5 pt-5 pb-3">
-                      <h3 className="font-bold text-base mb-1 line-clamp-2">{agent.name}</h3>
-                      <p className="text-sm text-ink-500 line-clamp-2 mb-3">{agent.description}</p>
+                      <div className="flex items-baseline gap-2 mb-1">
+                        <span className="font-extrabold text-base text-ink-900">{persona}</span>
+                        <span className="text-[11px] text-ink-400">({full})</span>
+                      </div>
+                      <div className="text-xs text-ink-500 mb-2">{agent.category}</div>
+                      <h3 className="font-bold text-sm mb-1 line-clamp-2">{agent.name}</h3>
+                      <p className="text-xs text-ink-500 line-clamp-2 mb-3">{agent.description}</p>
                       <div className="flex items-center justify-between text-xs text-ink-500 pt-3 border-t border-ink-50">
-                        <span>⭐ {agent.rating} · 구매 {formatCount(agent.orderCount)}</span>
+                        <span>⭐ {agent.rating} · 채용 {formatCount(agent.orderCount)}</span>
                         <span className="font-extrabold text-lg text-ink-900">
                           {agent.isFree ? "무료" : `${formatPrice(agent.startPrice)}원`}
                         </span>
@@ -134,7 +154,7 @@ export default function MarketPage() {
                   <div className="px-5 pb-5">
                     <LoginGate
                       action="채용"
-                      description={`${persona}님을 채용하려면 회원 로그인이 필요해요. 계약·결제·메시지 채널은 회원만 사용할 수 있어요.`}
+                      description={`${full}을(를) 채용하려면 회원 로그인이 필요해요. 계약·결제·메시지 채널은 회원만 사용할 수 있어요.`}
                       className="block w-full"
                     >
                       <span className="inline-flex items-center justify-center gap-2 h-11 w-full rounded-lg bg-ink-900 text-white font-semibold text-sm hover:bg-ink-700 transition-colors">

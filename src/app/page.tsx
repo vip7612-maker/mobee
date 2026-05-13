@@ -1,5 +1,4 @@
 import Link from "next/link";
-import Image from "next/image";
 import {
   Search,
   ArrowRight,
@@ -21,7 +20,7 @@ import { AgentCard } from "@/components/agent-card";
 import { categories } from "@/data/categories";
 import { agents, getHotAgents } from "@/data/agents";
 import { posts } from "@/data/community";
-import { formatCount, getPortrait, getPersonaName } from "@/lib/utils";
+import { formatCount, getPersonaCode, getPersonaName } from "@/lib/utils";
 
 const Hexagon = ({ className }: { className?: string }) => (
   <svg viewBox="0 0 60 52" className={className} aria-hidden>
@@ -388,20 +387,14 @@ export default function Home() {
                     </Link>
                   </div>
                   <div className="p-2">
-                    {catAgents.map((agent) => (
+                    {catAgents.map((agent, idx) => (
                       <Link
                         key={agent.id}
                         href={`/agents/${agent.id}`}
                         className="flex items-center gap-3 p-3 rounded-xl hover:bg-ink-50 transition-colors"
                       >
-                        <div className="relative w-12 h-12 rounded-full overflow-hidden shrink-0 ring-2 ring-white shadow-sm">
-                          <Image
-                            src={getPortrait(agent.id)}
-                            alt={getPersonaName(agent.id)}
-                            fill
-                            sizes="48px"
-                            className="object-cover"
-                          />
+                        <div className={`w-12 h-12 rounded-full shrink-0 flex items-center justify-center font-extrabold text-sm shadow-sm ${idx % 2 === 0 ? "bg-ink-900 text-brand" : "bg-brand text-ink-900"}`}>
+                          {getPersonaCode(agent.id)}
                         </div>
                         <div className="flex-1 min-w-0">
                           <div className="font-semibold text-sm text-ink-900 truncate">

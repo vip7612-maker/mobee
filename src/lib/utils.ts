@@ -15,33 +15,66 @@ export function formatCount(value: number) {
   return `${value}`;
 }
 
-// 30~50대 비중을 높인 portrait 시드 (randomuser.me)
-// 사용자가 보기에 직장인·전문가 인상으로 보이는 ID들로 큐레이션
-const PORTRAITS = [
-  "men/32", "women/41", "men/45", "women/52", "men/68",
-  "women/65", "men/55", "women/49", "men/71", "women/38",
-  "men/47", "women/71", "men/35", "women/55", "men/52",
-  "women/46", "men/64", "women/58", "men/41", "women/42",
-  "men/56", "women/61", "men/38", "women/35", "men/62",
-  "women/53", "men/48", "women/68", "men/59", "women/45",
+// AI 로봇 모델 시리얼 (옵티머스 / 모비 시리즈)
+// 사람이 아닌 AI 로봇임을 명확히 하기 위해 번호 체계 사용
+const SERIALS = [
+  "A03", "A07", "A12", "A18", "A21", "A24", "A29", "A36", "A42", "A47",
+  "A51", "A58", "A63", "A67", "A74", "A79", "A83", "A88", "A92", "A97",
+  "B04", "B11", "B17", "B23", "B28", "B34", "B39", "B45", "B52", "B59",
 ];
 
-const NAMES = [
-  "김수정 (38)", "박지영 (42)", "이준호 (35)", "최은지 (45)", "정태경 (52)",
-  "한미경 (48)", "오재석 (41)", "윤소영 (39)", "강현우 (54)", "임수민 (36)",
-  "신호철 (47)", "백지현 (43)", "조성훈 (38)", "권유진 (46)", "장민규 (51)",
-  "노혜경 (44)", "서대원 (49)", "황지연 (40)", "남기홍 (37)", "문선아 (42)",
-  "유경수 (53)", "전미라 (45)", "차상현 (39)", "안지수 (36)", "구본진 (50)",
-  "송예린 (43)", "배준영 (46)", "홍서윤 (48)", "양태우 (52)", "양혜정 (41)",
-];
-
-export function getPortrait(agentId: string): string {
+export function getPersonaCode(agentId: string): string {
   const idNum = parseInt(agentId.replace(/\D/g, ""), 10) || 0;
-  const seed = PORTRAITS[idNum % PORTRAITS.length];
-  return `https://randomuser.me/api/portraits/${seed}.jpg`;
+  return SERIALS[idNum % SERIALS.length];
 }
 
 export function getPersonaName(agentId: string): string {
+  // 카드에 큰 글씨로 들어가는 짧은 호칭
+  return `모비 ${getPersonaCode(agentId)}`;
+}
+
+export function getPersonaFull(agentId: string): string {
+  // 풀네임 (부제)
+  return `모두의비서 ${getPersonaCode(agentId)}`;
+}
+
+/**
+ * 로봇 사진 경로.
+ * 사용자가 web/public/personas/A36.jpg 식으로 옵티머스 무드의 로봇 사진을
+ * 30장 업로드해두면 그것을 우선 사용. 지금은 자산이 없어 빈 문자열 반환 →
+ * AgentCard 등 호출처에서 자체 디자인 placeholder로 렌더링.
+ */
+export function getPortrait(agentId: string): string {
+  return `/personas/${getPersonaCode(agentId)}.jpg`;
+}
+
+// 카테고리별 LED 광원 컬러. 모비 유닛은 분야에 따라 페이스 LED 색이 다르다.
+const CATEGORY_ACCENT: Record<string, string> = {
+  cs: "#FF6B9D",
+  marketing: "#FFD200",
+  productivity: "#4ECDC4",
+  data: "#5C7AEA",
+  hr: "#B57BFF",
+  dev: "#00E5A0",
+  legal: "#FF7F50",
+  sales: "#FFA94D",
+  ecommerce: "#FF5454",
+  finance: "#38C172",
+  education: "#6DD5FA",
+  etc: "#C9A0DC",
+};
+
+export type ShellTone = "silver" | "graphite" | "champagne";
+
+export function getRobotAccent(categoryId: string): string {
+  return CATEGORY_ACCENT[categoryId] ?? "#FFD200";
+}
+
+// 헬멧 외피 톤. 시리얼 코드에 따라 결정적으로 분포 (대다수 실버, 일부 그라파이트/샴페인).
+export function getRobotShellTone(agentId: string): ShellTone {
   const idNum = parseInt(agentId.replace(/\D/g, ""), 10) || 0;
-  return NAMES[idNum % NAMES.length];
+  const r = idNum % 7;
+  if (r === 0) return "graphite";
+  if (r === 3) return "champagne";
+  return "silver";
 }

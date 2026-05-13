@@ -1,9 +1,17 @@
 import Link from "next/link";
-import Image from "next/image";
-import { Star, MessageCircle, Briefcase } from "lucide-react";
+import { Star, MessageCircle, Cpu } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { formatPrice, formatCount, getPortrait, getPersonaName } from "@/lib/utils";
+import { BeeMark } from "@/components/layout/logo";
+import {
+  formatPrice,
+  formatCount,
+  getPersonaName,
+  getPersonaFull,
+  getPersonaCode,
+  getRobotAccent,
+  getRobotShellTone,
+} from "@/lib/utils";
 import type { Agent } from "@/data/agents";
 
 interface AgentCardProps {
@@ -11,24 +19,58 @@ interface AgentCardProps {
   variant?: "default" | "compact";
 }
 
+const SHELL_STYLES: Record<
+  ReturnType<typeof getRobotShellTone>,
+  { bg: string; code: string; sub: string; grid: string; bee: string; label: string }
+> = {
+  silver: {
+    bg: "bg-ink-100",
+    code: "text-ink-900",
+    sub: "text-ink-500",
+    grid: "rgba(33,33,33,0.05)",
+    bee: "opacity-60",
+    label: "MOBEE · SILVER",
+  },
+  graphite: {
+    bg: "bg-ink-900",
+    code: "text-white",
+    sub: "text-white/40",
+    grid: "rgba(255,255,255,0.05)",
+    bee: "opacity-40",
+    label: "MOBEE · GRAPHITE",
+  },
+  champagne: {
+    bg: "bg-cream",
+    code: "text-ink-900",
+    sub: "text-ink-700",
+    grid: "rgba(33,33,33,0.05)",
+    bee: "opacity-50",
+    label: "MOBEE · CHAMPAGNE",
+  },
+};
+
 export function AgentCard({ agent, variant = "default" }: AgentCardProps) {
-  const portrait = getPortrait(agent.id);
   const persona = getPersonaName(agent.id);
+  const full = getPersonaFull(agent.id);
+  const code = getPersonaCode(agent.id);
+  const accent = getRobotAccent(agent.categoryId);
+  const shell = SHELL_STYLES[getRobotShellTone(agent.id)];
 
   return (
     <Link href={`/agents/${agent.id}`}>
       <Card className="group h-full overflow-hidden hover:shadow-xl hover:border-ink-300 transition-all bg-white">
-        {/* 프로필 사진 영역 */}
-        <div className="relative aspect-[4/3] bg-ink-50 overflow-hidden">
-          <Image
-            src={portrait}
-            alt={persona}
-            fill
-            sizes="(max-width: 768px) 50vw, 25vw"
-            className="object-cover grayscale-[0.05] group-hover:scale-[1.04] transition-transform duration-500"
+        {/* 로봇 모델 placeholder */}
+        <div className={`relative aspect-[4/3] ${shell.bg} overflow-hidden`}>
+          {/* 격자 무늬 */}
+          <div
+            className="absolute inset-0 opacity-60"
+            style={{
+              backgroundImage: `linear-gradient(${shell.grid} 1px, transparent 1px), linear-gradient(90deg, ${shell.grid} 1px, transparent 1px)`,
+              backgroundSize: "24px 24px",
+            }}
           />
-          {/* 사진 위 오버레이 */}
-          <div className="absolute inset-x-0 top-0 p-3 flex items-start justify-between gap-2">
+          {/* 상단 뱃지 */}
+          <div className="absolute inset-x-0 top-0 z-10 p-3 flex items-start justify-between gap-2">
             <div className="flex gap-1.5">
               {agent.isHot && <Badge variant="hot">🔥 HOT</Badge>}
               {agent.isNew && <Badge variant="new">NEW</Badge>}
@@ -38,26 +80,55 @@ export function AgentCard({ agent, variant = "default" }: AgentCardProps) {
               {agent.creatorLevel}
             </Badge>
           </div>
-          {/* 사진 하단 그라데이션 + 이름 */}
-          <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-ink-900/85 via-ink-900/40 to-transparent p-3 pt-12">
-            <div className="text-[11px] text-white/80 flex items-center gap-1">
-              <Briefcase className="h-3 w-3" />
-              {agent.category}
+
+          {/* 가운데 시리얼 영역 */}
+          <div className="absolute inset-0 flex flex-col items-center justify-center group-hover:scale-[1.04] transition-transform duration-500">
+            <BeeMark className={`h-8 w-8 mb-2 ${shell.bee}`} />
+            <div className={`text-[9px] font-mono tracking-[0.3em] uppercase ${shell.sub}`}>
+              {shell.label}
             </div>
-            <div className="font-bold text-white text-base mt-0.5 leading-tight">
-              {persona}
+            <div className={`font-extrabold text-5xl md:text-6xl tracking-tight ${shell.code} mt-1`}>
+              {code}
             </div>
+            {/* LED + 모델 메타 */}
+            <div className={`mt-2 flex items-center gap-1.5 text-[10px] font-mono ${shell.sub}`}>
+              <span
+                className="inline-block h-1.5 w-1.5 rounded-full"
+                style={{ backgroundColor: accent, boxShadow: `0 0 6px ${accent}` }}
+                aria-hidden
+              />
+              <Cpu className="h-2.5 w-2.5" />
+              <span>{agent.platforms[0] || "GPT-4"}</span>
+            </div>
+          </div>
+
+          {/* 좌하단 LED 상태등 */}
+          <div className="absolute bottom-3 left-3 flex items-center gap-1 z-10">
+            <span
+              className="inline-block h-2 w-2 rounded-full animate-pulse"
+              style={{ backgroundColor: accent, boxShadow: `0 0 8px ${accent}` }}
+              aria-hidden
+            />
+            <span className={`text-[9px] font-mono tracking-widest ${shell.sub}`}>ONLINE</span>
           </div>
         </div>
 
         {/* 본문 */}
         <div className="p-4 space-y-3">
           <div className="space-y-1">
-            <h3 className="font-bold text-base leading-snug line-clamp-2 group-hover:text-ink-600">
+            <div className="flex items-baseline gap-2">
+              <span className="font-extrabold text-base text-ink-900">{persona}</span>
+              <span className="text-[11px] text-ink-400">({full})</span>
+            </div>
+            <div className="text-xs text-ink-500">{agent.category}</div>
+          </div>
+
+          <div>
+            <h3 className="font-bold text-sm leading-snug line-clamp-2 text-ink-800">
               {agent.name}
             </h3>
             {variant === "default" && (
-              <p className="text-sm text-ink-500 line-clamp-2">{agent.description}</p>
+              <p className="mt-1 text-xs text-ink-500 line-clamp-2">{agent.description}</p>
             )}
           </div>
 

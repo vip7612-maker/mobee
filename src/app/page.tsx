@@ -27,11 +27,9 @@ export default function Home() {
   return (
     <>
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-b from-brand-50 via-brand-50/40 to-white pt-12 pb-16 md:pt-20 md:pb-24 overflow-hidden">
-        <div className="absolute inset-0 -z-10 opacity-50">
-          <div className="absolute top-10 right-10 w-72 h-72 bg-brand-300 rounded-full blur-3xl opacity-30" />
-          <div className="absolute bottom-0 left-10 w-96 h-96 bg-brand-200 rounded-full blur-3xl opacity-40" />
-        </div>
+      <section className="relative bg-white pt-12 pb-16 md:pt-20 md:pb-24 border-b border-ink-100">
+        <div className="absolute top-12 right-8 w-32 h-32 md:w-44 md:h-44 bg-brand rounded-full -z-10 opacity-90" />
+        <div className="absolute bottom-12 left-8 w-20 h-20 md:w-28 md:h-28 bg-ink-900 rounded-2xl -z-10 hidden md:block" />
         <div className="container">
           <div className="max-w-3xl mx-auto text-center">
             <Badge variant="brand" className="mb-5 inline-flex items-center gap-1.5 px-3 py-1.5 text-sm">
@@ -176,37 +174,48 @@ export default function Home() {
                 title: "쇼핑몰 운영자",
                 useCase: "CS 응답 시간 12분 → 1분",
                 desc: "매출 3억 셀러도 CS 인력 70% 절감",
-                color: "bg-rose-50",
+                tone: "white",
               },
               {
                 emoji: "📣",
                 title: "1인 마케터",
                 useCase: "콘텐츠 생산량 10배",
                 desc: "혼자서도 SNS 채널 5개 운영 가능",
-                color: "bg-pink-50",
+                tone: "brand",
               },
               {
                 emoji: "💼",
                 title: "스타트업 대표",
                 useCase: "회의록 작성 자동화",
                 desc: "주 10시간 → 0시간 절감",
-                color: "bg-yellow-50",
+                tone: "ink",
               },
               {
                 emoji: "👥",
                 title: "HR 매니저",
                 useCase: "채용 기간 40% 단축",
                 desc: "이력서 200건도 5분이면 정리 완료",
-                color: "bg-cyan-50",
+                tone: "cream",
               },
-            ].map((item) => (
-              <Card key={item.title} className={`${item.color} border-0 p-6 hover:shadow-lg transition-all`}>
+            ].map((item) => {
+              const toneClass =
+                item.tone === "brand"
+                  ? "bg-brand text-ink-900 border-transparent"
+                  : item.tone === "ink"
+                  ? "bg-ink-900 text-white border-transparent"
+                  : item.tone === "cream"
+                  ? "bg-cream border-transparent"
+                  : "bg-white border border-ink-100";
+              const descClass = item.tone === "ink" ? "text-ink-200" : "text-ink-600";
+              const titleClass = item.tone === "ink" ? "text-white" : "text-ink-900";
+              return (
+              <Card key={item.title} className={`${toneClass} p-6 hover:shadow-lg transition-all`}>
                 <div className="text-4xl mb-4">{item.emoji}</div>
-                <div className="font-bold text-base text-ink-900 mb-1">{item.title}</div>
-                <div className="text-lg font-extrabold text-ink-900 mb-2">{item.useCase}</div>
-                <div className="text-sm text-ink-600">{item.desc}</div>
+                <div className={`font-bold text-base mb-1 ${titleClass}`}>{item.title}</div>
+                <div className={`text-lg font-extrabold mb-2 ${titleClass}`}>{item.useCase}</div>
+                <div className={`text-sm ${descClass}`}>{item.desc}</div>
               </Card>
-            ))}
+            );})}
           </div>
         </div>
       </section>
@@ -222,23 +231,24 @@ export default function Home() {
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            {featuredCategories.map((cat) => {
+            {featuredCategories.map((cat, i) => {
               const catAgents = agents.filter((a) => a.categoryId === cat.id).slice(0, 3);
+              const headerTone = i % 2 === 0 ? "bg-brand" : "bg-cream";
               return (
                 <Card key={cat.id} className="overflow-hidden">
-                  <div className={`${cat.color} px-6 py-5 flex items-center justify-between`}>
+                  <div className={`${headerTone} px-6 py-5 flex items-center justify-between border-b border-ink-100`}>
                     <div className="flex items-center gap-3">
                       <span className="text-3xl">{cat.emoji}</span>
                       <div>
                         <h3 className="font-bold text-lg text-ink-900">{cat.name}</h3>
-                        <p className="text-xs text-ink-600 mt-0.5">
+                        <p className="text-xs text-ink-700 mt-0.5">
                           {formatCount(cat.agentCount)}개 에이전트
                         </p>
                       </div>
                     </div>
                     <Link
                       href={`/agents?category=${cat.id}`}
-                      className="text-sm font-semibold text-ink-700 hover:text-ink-900 inline-flex items-center gap-1"
+                      className="text-sm font-semibold text-ink-900 hover:underline inline-flex items-center gap-1"
                     >
                       더보기 <ArrowRight className="h-3.5 w-3.5" />
                     </Link>
@@ -281,7 +291,8 @@ export default function Home() {
       <section className="py-16 md:py-24">
         <div className="container">
           <Card className="relative overflow-hidden bg-ink-900 text-white p-8 md:p-14 border-0">
-            <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-brand/20 to-transparent" />
+            <div className="absolute -top-10 -right-10 w-56 h-56 bg-brand rounded-full opacity-90" />
+            <div className="absolute top-20 right-32 w-12 h-12 bg-brand rounded-full opacity-80 hidden md:block" />
             <div className="absolute top-10 right-10 text-9xl opacity-10">🤖</div>
             <div className="relative max-w-2xl">
               <Badge variant="brand" className="mb-5">제작자 모집</Badge>

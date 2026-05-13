@@ -41,9 +41,9 @@ export default function MarketPage() {
   return (
     <div className="bg-ink-50/30">
       {/* Hero Banner */}
-      <div className="relative bg-gradient-to-br from-ink-900 to-ink-700 text-white overflow-hidden">
-        <div className="absolute top-0 right-0 w-1/3 h-full bg-brand/10 blur-3xl" />
-        <div className="absolute bottom-0 left-1/4 w-96 h-96 bg-brand/20 rounded-full blur-3xl" />
+      <div className="relative bg-ink-900 text-white overflow-hidden">
+        <div className="absolute -top-16 -right-16 w-64 h-64 bg-brand rounded-full" />
+        <div className="absolute bottom-10 right-32 w-16 h-16 bg-brand rounded-full opacity-80 hidden md:block" />
         <div className="container relative py-14 md:py-20">
           <Badge variant="brand" className="mb-4">🛍️ AI 에이전트 마켓</Badge>
           <h1 className="text-3xl md:text-5xl font-extrabold leading-tight mb-4">
@@ -102,7 +102,7 @@ export default function MarketPage() {
                   <div className="absolute top-3 left-3 z-10 w-10 h-10 rounded-full bg-brand text-ink-900 font-extrabold text-lg flex items-center justify-center">
                     {i + 1}
                   </div>
-                  <div className="aspect-[16/9] bg-gradient-to-br from-brand-100 via-brand-50 to-white relative flex items-center justify-center">
+                  <div className={`aspect-[16/9] relative flex items-center justify-center ${i === 0 ? "bg-brand" : i === 1 ? "bg-ink-900" : "bg-cream"}`}>
                     <span className="text-7xl group-hover:scale-110 transition-transform">
                       {agent.thumbnail}
                     </span>

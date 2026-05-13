@@ -10,11 +10,20 @@ interface AgentCardProps {
   variant?: "default" | "compact";
 }
 
+const thumbTones = [
+  "bg-brand",
+  "bg-ink-900",
+  "bg-cream",
+  "bg-white border-b border-ink-100",
+];
+
 export function AgentCard({ agent, variant = "default" }: AgentCardProps) {
+  const seed = parseInt(agent.id.replace(/\D/g, "").slice(-2) || "0", 10);
+  const tone = thumbTones[seed % 4];
   return (
     <Link href={`/agents/${agent.id}`}>
-      <Card className="group h-full overflow-hidden hover:shadow-lg hover:border-ink-200 transition-all">
-        <div className="aspect-[5/3] bg-gradient-to-br from-brand-100 via-brand-50 to-white relative flex items-center justify-center">
+      <Card className="group h-full overflow-hidden hover:shadow-lg hover:border-ink-300 transition-all">
+        <div className={`aspect-[5/3] ${tone} relative flex items-center justify-center`}>
           <span className="text-6xl">{agent.thumbnail}</span>
           <div className="absolute top-3 left-3 flex gap-1.5">
             {agent.isHot && <Badge variant="hot">🔥 HOT</Badge>}

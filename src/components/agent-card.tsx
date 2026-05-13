@@ -1,8 +1,9 @@
 import Link from "next/link";
-import { Star, MessageCircle } from "lucide-react";
+import Image from "next/image";
+import { Star, MessageCircle, Briefcase } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { formatPrice, formatCount } from "@/lib/utils";
+import { formatPrice, formatCount, getPortrait, getPersonaName } from "@/lib/utils";
 import type { Agent } from "@/data/agents";
 
 interface AgentCardProps {
@@ -10,38 +11,48 @@ interface AgentCardProps {
   variant?: "default" | "compact";
 }
 
-const thumbTones = [
-  "bg-brand",
-  "bg-ink-900",
-  "bg-cream",
-  "bg-white border-b border-ink-100",
-];
-
 export function AgentCard({ agent, variant = "default" }: AgentCardProps) {
-  const seed = parseInt(agent.id.replace(/\D/g, "").slice(-2) || "0", 10);
-  const tone = thumbTones[seed % 4];
+  const portrait = getPortrait(agent.id);
+  const persona = getPersonaName(agent.id);
+
   return (
     <Link href={`/agents/${agent.id}`}>
-      <Card className="group h-full overflow-hidden hover:shadow-lg hover:border-ink-300 transition-all">
-        <div className={`aspect-[5/3] ${tone} relative flex items-center justify-center`}>
-          <span className="text-6xl">{agent.thumbnail}</span>
-          <div className="absolute top-3 left-3 flex gap-1.5">
-            {agent.isHot && <Badge variant="hot">🔥 HOT</Badge>}
-            {agent.isNew && <Badge variant="new">NEW</Badge>}
-            {agent.isFree && <Badge variant="default">무료</Badge>}
+      <Card className="group h-full overflow-hidden hover:shadow-xl hover:border-ink-300 transition-all bg-white">
+        {/* 프로필 사진 영역 */}
+        <div className="relative aspect-[4/3] bg-ink-50 overflow-hidden">
+          <Image
+            src={portrait}
+            alt={persona}
+            fill
+            sizes="(max-width: 768px) 50vw, 25vw"
+            className="object-cover grayscale-[0.05] group-hover:scale-[1.04] transition-transform duration-500"
+          />
+          {/* 사진 위 오버레이 */}
+          <div className="absolute inset-x-0 top-0 p-3 flex items-start justify-between gap-2">
+            <div className="flex gap-1.5">
+              {agent.isHot && <Badge variant="hot">🔥 HOT</Badge>}
+              {agent.isNew && <Badge variant="new">NEW</Badge>}
+              {agent.isFree && <Badge variant="default">무료</Badge>}
+            </div>
+            <Badge variant="outline" className="bg-white/95 backdrop-blur-sm">
+              {agent.creatorLevel}
+            </Badge>
           </div>
-          <Badge variant="outline" className="absolute top-3 right-3 bg-white/90">
-            {agent.creatorLevel}
-          </Badge>
+          {/* 사진 하단 그라데이션 + 이름 */}
+          <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-ink-900/85 via-ink-900/40 to-transparent p-3 pt-12">
+            <div className="text-[11px] text-white/80 flex items-center gap-1">
+              <Briefcase className="h-3 w-3" />
+              {agent.category}
+            </div>
+            <div className="font-bold text-white text-base mt-0.5 leading-tight">
+              {persona}
+            </div>
+          </div>
         </div>
 
+        {/* 본문 */}
         <div className="p-4 space-y-3">
-          <div className="space-y-1.5">
-            <div className="flex items-center gap-1.5 text-xs text-ink-500">
-              <span>{agent.category}</span>
-              <span>·</span>
-              <span>{agent.creator}</span>
-            </div>
+          <div className="space-y-1">
             <h3 className="font-bold text-base leading-snug line-clamp-2 group-hover:text-ink-600">
               {agent.name}
             </h3>
@@ -58,8 +69,8 @@ export function AgentCard({ agent, variant = "default" }: AgentCardProps) {
             ))}
           </div>
 
-          <div className="flex items-center justify-between pt-1 border-t border-ink-50">
-            <div className="flex items-center gap-3 text-xs">
+          <div className="flex items-center justify-between pt-2 border-t border-ink-50">
+            <div className="flex items-center gap-2.5 text-xs">
               <span className="flex items-center gap-1 text-ink-900 font-semibold">
                 <Star className="h-3.5 w-3.5 fill-brand text-brand" />
                 {agent.rating.toFixed(1)}
@@ -75,8 +86,8 @@ export function AgentCard({ agent, variant = "default" }: AgentCardProps) {
                 <span className="font-bold text-base text-ink-900">무료</span>
               ) : (
                 <>
-                  <div className="text-[10px] text-ink-400">시작가</div>
-                  <div className="font-bold text-base text-ink-900">
+                  <div className="text-[10px] text-ink-400">월</div>
+                  <div className="font-extrabold text-base text-ink-900">
                     {formatPrice(agent.startPrice)}원
                   </div>
                 </>

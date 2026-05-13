@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { ShoppingBag, TrendingUp, Sparkles, Gift, ArrowRight, Lock } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -10,7 +11,7 @@ import { AgentCard } from "@/components/agent-card";
 import { LoginGate } from "@/components/login-gate";
 import { agents, getHotAgents, getNewAgents, getFreeAgents } from "@/data/agents";
 import { categories } from "@/data/categories";
-import { formatPrice, formatCount, cn } from "@/lib/utils";
+import { formatPrice, formatCount, cn, getPortrait, getPersonaName } from "@/lib/utils";
 
 type Tab = "all" | "hot" | "new" | "free";
 
@@ -97,45 +98,54 @@ export default function MarketPage() {
             </div>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-            {topPicks.map((agent, i) => (
-              <Card key={agent.id} className="relative overflow-hidden hover:shadow-xl transition-all group">
-                <Link href={`/market/${agent.id}`}>
-                  <div className="absolute top-3 left-3 z-10 w-10 h-10 rounded-full bg-brand text-ink-900 font-extrabold text-lg flex items-center justify-center">
-                    {i + 1}
-                  </div>
-                  <div className={`aspect-[16/9] relative flex items-center justify-center ${i === 0 ? "bg-brand" : i === 1 ? "bg-ink-900" : "bg-cream"}`}>
-                    <span className="text-7xl group-hover:scale-110 transition-transform">
-                      {agent.thumbnail}
-                    </span>
-                  </div>
-                  <div className="px-5 pt-5 pb-3">
-                    <Badge variant="outline" className="mb-2 text-xs">
-                      {agent.category}
-                    </Badge>
-                    <h3 className="font-bold text-base mb-1 line-clamp-2">{agent.name}</h3>
-                    <p className="text-sm text-ink-500 line-clamp-2 mb-3">{agent.description}</p>
-                    <div className="flex items-center justify-between text-xs text-ink-500 pt-3 border-t border-ink-50">
-                      <span>⭐ {agent.rating} · 구매 {formatCount(agent.orderCount)}</span>
-                      <span className="font-extrabold text-lg text-ink-900">
-                        {agent.isFree ? "무료" : `${formatPrice(agent.startPrice)}원`}
-                      </span>
+            {topPicks.map((agent, i) => {
+              const portrait = getPortrait(agent.id);
+              const persona = getPersonaName(agent.id);
+              return (
+                <Card key={agent.id} className="relative overflow-hidden hover:shadow-xl transition-all group">
+                  <Link href={`/market/${agent.id}`}>
+                    <div className="absolute top-3 left-3 z-10 w-10 h-10 rounded-full bg-brand text-ink-900 font-extrabold text-lg flex items-center justify-center shadow-lg">
+                      {i + 1}
                     </div>
+                    <div className="aspect-[16/10] relative bg-ink-50 overflow-hidden">
+                      <Image
+                        src={portrait}
+                        alt={persona}
+                        fill
+                        sizes="(max-width: 768px) 100vw, 33vw"
+                        className="object-cover group-hover:scale-[1.03] transition-transform duration-500"
+                      />
+                      <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-ink-900/85 via-ink-900/30 to-transparent p-4 pt-16">
+                        <div className="text-[11px] text-white/80">{agent.category}</div>
+                        <div className="font-bold text-white text-lg mt-0.5">{persona}</div>
+                      </div>
+                    </div>
+                    <div className="px-5 pt-5 pb-3">
+                      <h3 className="font-bold text-base mb-1 line-clamp-2">{agent.name}</h3>
+                      <p className="text-sm text-ink-500 line-clamp-2 mb-3">{agent.description}</p>
+                      <div className="flex items-center justify-between text-xs text-ink-500 pt-3 border-t border-ink-50">
+                        <span>⭐ {agent.rating} · 구매 {formatCount(agent.orderCount)}</span>
+                        <span className="font-extrabold text-lg text-ink-900">
+                          {agent.isFree ? "무료" : `${formatPrice(agent.startPrice)}원`}
+                        </span>
+                      </div>
+                    </div>
+                  </Link>
+                  <div className="px-5 pb-5">
+                    <LoginGate
+                      action="채용"
+                      description={`${persona}님을 채용하려면 회원 로그인이 필요해요. 계약·결제·메시지 채널은 회원만 사용할 수 있어요.`}
+                      className="block w-full"
+                    >
+                      <span className="inline-flex items-center justify-center gap-2 h-11 w-full rounded-lg bg-ink-900 text-white font-semibold text-sm hover:bg-ink-700 transition-colors">
+                        <Lock className="h-3.5 w-3.5" />
+                        {agent.isFree ? "무료로 채용하기" : "채용하기"}
+                      </span>
+                    </LoginGate>
                   </div>
-                </Link>
-                <div className="px-5 pb-5">
-                  <LoginGate
-                    action="구매"
-                    description={`${agent.name}을(를) 구매하려면 회원 로그인이 필요해요. 결제·다운로드·이력은 회원만 가능합니다.`}
-                    className="block w-full"
-                  >
-                    <span className="inline-flex items-center justify-center gap-2 h-11 w-full rounded-lg bg-ink-900 text-white font-semibold text-sm hover:bg-ink-700 transition-colors">
-                      <Lock className="h-3.5 w-3.5" />
-                      {agent.isFree ? "무료 받기" : "구매하기"}
-                    </span>
-                  </LoginGate>
-                </div>
-              </Card>
-            ))}
+                </Card>
+              );
+            })}
           </div>
         </div>
       </section>

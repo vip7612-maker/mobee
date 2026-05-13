@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import {
   Search,
   ArrowRight,
@@ -8,6 +9,9 @@ import {
   Shield,
   Zap,
   CheckCircle2,
+  GraduationCap,
+  Clock,
+  AlertCircle,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -17,7 +21,7 @@ import { AgentCard } from "@/components/agent-card";
 import { categories } from "@/data/categories";
 import { agents, getHotAgents } from "@/data/agents";
 import { posts } from "@/data/community";
-import { formatCount } from "@/lib/utils";
+import { formatCount, getPortrait, getPersonaName } from "@/lib/utils";
 
 const Hexagon = ({ className }: { className?: string }) => (
   <svg viewBox="0 0 60 52" className={className} aria-hidden>
@@ -388,21 +392,32 @@ export default function Home() {
                       <Link
                         key={agent.id}
                         href={`/agents/${agent.id}`}
-                        className="flex items-center gap-4 p-3 rounded-xl hover:bg-ink-50 transition-colors"
+                        className="flex items-center gap-3 p-3 rounded-xl hover:bg-ink-50 transition-colors"
                       >
-                        <span className="text-3xl">{agent.thumbnail}</span>
+                        <div className="relative w-12 h-12 rounded-full overflow-hidden shrink-0 ring-2 ring-white shadow-sm">
+                          <Image
+                            src={getPortrait(agent.id)}
+                            alt={getPersonaName(agent.id)}
+                            fill
+                            sizes="48px"
+                            className="object-cover"
+                          />
+                        </div>
                         <div className="flex-1 min-w-0">
                           <div className="font-semibold text-sm text-ink-900 truncate">
+                            {getPersonaName(agent.id)}
+                          </div>
+                          <div className="text-xs text-ink-500 truncate">
                             {agent.name}
                           </div>
-                          <div className="text-xs text-ink-500 flex items-center gap-2 mt-0.5">
+                          <div className="text-[11px] text-ink-400 flex items-center gap-1.5 mt-0.5">
                             <span>⭐ {agent.rating}</span>
                             <span>·</span>
                             <span>리뷰 {agent.reviewCount}</span>
                           </div>
                         </div>
                         <div className="text-right shrink-0">
-                          <div className="text-[10px] text-ink-400">시작가</div>
+                          <div className="text-[10px] text-ink-400">월</div>
                           <div className="font-bold text-sm">
                             {agent.isFree ? "무료" : `${(agent.startPrice / 1000).toFixed(0)}k`}
                           </div>
@@ -451,6 +466,73 @@ export default function Home() {
                 </Button>
                 <Button variant="outline" size="xl" className="bg-transparent border-white/30 text-white hover:bg-white/10" asChild>
                   <Link href="/guide">제작자 가이드</Link>
+                </Button>
+              </div>
+            </div>
+          </Card>
+        </div>
+      </section>
+
+      {/* 대학생 멘토 모집 (마감 연장) */}
+      <section className="pb-16 md:pb-24">
+        <div className="container">
+          <Card className="relative overflow-hidden bg-brand text-ink-900 p-8 md:p-14 border-0">
+            <div className="absolute -top-10 -left-10 w-56 h-56 bg-ink-900 rounded-full opacity-10" />
+            <div className="absolute bottom-10 right-10 w-12 h-12 bg-ink-900 rounded-full opacity-10 hidden md:block" />
+            <div className="absolute top-10 right-10 text-9xl opacity-10">🎓</div>
+            <div className="relative max-w-2xl">
+              <div className="flex flex-wrap items-center gap-2 mb-5">
+                <Badge variant="outline" className="bg-ink-900 text-brand border-transparent inline-flex items-center gap-1.5">
+                  <GraduationCap className="h-3.5 w-3.5" />
+                  대학생 멘토 모집
+                </Badge>
+                <Badge variant="outline" className="bg-white/90 text-ink-900 border-transparent inline-flex items-center gap-1.5">
+                  <AlertCircle className="h-3.5 w-3.5" />
+                  마감 연장
+                </Badge>
+              </div>
+              <h2 className="text-3xl md:text-5xl font-extrabold leading-tight mb-5">
+                AI 비서를 함께 알리는<br />
+                <span className="underline decoration-ink-900 decoration-4 underline-offset-4">대학생 멘토</span>를 찾습니다
+              </h2>
+              <p className="text-ink-900/80 text-base md:text-lg mb-6 leading-relaxed">
+                현장 멘티(교사·1인 사업자·비영리 운영자)에게 AI 비서 활용을 안내해주실<br />
+                <strong className="text-ink-900">대학생 멘토</strong>를 모집해요. 활동비·수료증·추천서 제공.
+              </p>
+
+              {/* 마감 연장 안내 박스 */}
+              <div className="bg-ink-900 text-white rounded-2xl p-5 mb-7 flex items-start gap-3">
+                <Clock className="h-5 w-5 text-brand shrink-0 mt-0.5" />
+                <div className="flex-1">
+                  <div className="flex flex-wrap items-baseline gap-2 mb-1">
+                    <span className="font-bold text-base">신청 마감 연장</span>
+                    <span className="text-brand font-extrabold text-base">
+                      2026년 5월 14일(오늘) 23:59까지
+                    </span>
+                  </div>
+                  <p className="text-sm text-ink-200 leading-relaxed">
+                    당초 마감일이 지났지만 더 많은 분의 합류를 위해 <strong className="text-white">오늘 자정까지</strong> 신청 기한을 연장했어요. 아직 지원 전이라면 지금 바로 신청해주세요.
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex flex-wrap gap-3 mb-8">
+                {["월 활동비 30만원", "수료증 + 추천서", "Mobee 멘토 배지", "현장 멘티 매칭"].map((b) => (
+                  <div key={b} className="flex items-center gap-2 text-sm">
+                    <CheckCircle2 className="h-4 w-4 text-ink-900" />
+                    <span className="font-medium">{b}</span>
+                  </div>
+                ))}
+              </div>
+              <div className="flex flex-wrap gap-3">
+                <Button variant="default" size="xl" className="bg-ink-900 text-brand hover:bg-ink-800" asChild>
+                  <Link href="/signup?role=mentor">
+                    멘토 지금 신청하기
+                    <ArrowRight className="ml-1 h-4 w-4" />
+                  </Link>
+                </Button>
+                <Button variant="outline" size="xl" className="bg-transparent border-ink-900/30 text-ink-900 hover:bg-ink-900/10" asChild>
+                  <Link href="/community">자세히 보기</Link>
                 </Button>
               </div>
             </div>

@@ -1,0 +1,71 @@
+<svg width="100%" viewBox="0 0 690 370" role="img" xmlns="http://www.w3.org/2000/svg" style="">
+  <title style="fill:rgb(0, 0, 0);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto">Mobee 메인 로고</title>
+  <desc style="fill:rgb(0, 0, 0);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto">꿀벌 마스코트와 Mobee 로고타입, 그리고 슬로건이 담긴 메인 로고</desc>
+
+  <defs>
+    <pattern id="hex-bg" x="0" y="0" width="60" height="52" patternUnits="userSpaceOnUse">
+      <polygon points="30,2 56,17 56,47 30,62 4,47 4,17" fill="none" stroke="#FFC107" stroke-width="0.4" opacity="0.15"/>
+    </pattern>
+  </defs>
+
+  <rect width="680" height="360" fill="url(#hex-bg)" style="stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+
+  <!-- 꿀벌 마스코트 -->
+  <g transform="translate(180, 110)" style="fill:rgb(0, 0, 0);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto">
+    <!-- 왼쪽 날개 -->
+    <ellipse cx="-30" cy="-25" rx="28" ry="36" fill="#FFFFFF" stroke="#212121" stroke-width="2" opacity="0.85" transform="rotate(-25)" style="fill:rgb(255, 255, 255);stroke:rgb(33, 33, 33);color:rgb(0, 0, 0);stroke-width:2px;stroke-linecap:butt;stroke-linejoin:miter;opacity:0.85;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+    <ellipse cx="-30" cy="-25" rx="28" ry="36" fill="none" stroke="#FFC107" stroke-width="1" opacity="0.6" transform="rotate(-25)" style="fill:none;stroke:rgb(255, 193, 7);color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:0.6;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+    
+    <!-- 오른쪽 날개 -->
+    <ellipse cx="30" cy="-25" rx="28" ry="36" fill="#FFFFFF" stroke="#212121" stroke-width="2" opacity="0.85" transform="rotate(25)" style="fill:rgb(255, 255, 255);stroke:rgb(33, 33, 33);color:rgb(0, 0, 0);stroke-width:2px;stroke-linecap:butt;stroke-linejoin:miter;opacity:0.85;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+    <ellipse cx="30" cy="-25" rx="28" ry="36" fill="none" stroke="#FFC107" stroke-width="1" opacity="0.6" transform="rotate(25)" style="fill:none;stroke:rgb(255, 193, 7);color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:0.6;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+    
+    <!-- 몸통 (둥근 타원) -->
+    <ellipse cx="0" cy="0" rx="62" ry="56" fill="#FFC107" stroke="#212121" stroke-width="3" style="fill:rgb(255, 193, 7);stroke:rgb(33, 33, 33);color:rgb(0, 0, 0);stroke-width:3px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+    
+    <!-- 줄무늬 1 -->
+    <path d="M -50 -10 Q 0 -22 50 -10 L 50 5 Q 0 -7 -50 5 Z" fill="#212121" style="fill:rgb(33, 33, 33);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+    
+    <!-- 줄무늬 2 -->
+    <path d="M -55 20 Q 0 32 55 20 L 55 35 Q 0 47 -55 35 Z" fill="#212121" style="fill:rgb(33, 33, 33);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+    
+    <!-- 얼굴: 왼쪽 눈 -->
+    <circle cx="-18" cy="-22" r="6" fill="#212121" style="fill:rgb(33, 33, 33);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+    <circle cx="-16" cy="-24" r="2" fill="#FFFFFF" style="fill:rgb(255, 255, 255);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+    
+    <!-- 얼굴: 오른쪽 눈 -->
+    <circle cx="18" cy="-22" r="6" fill="#212121" style="fill:rgb(33, 33, 33);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+    <circle cx="20" cy="-24" r="2" fill="#FFFFFF" style="fill:rgb(255, 255, 255);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+    
+    <!-- 미소 -->
+    <path d="M -10 -8 Q 0 0 10 -8" fill="none" stroke="#212121" stroke-width="2.5" stroke-linecap="round" style="fill:none;stroke:rgb(33, 33, 33);color:rgb(0, 0, 0);stroke-width:2.5px;stroke-linecap:round;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+    
+    <!-- 더듬이 왼쪽 -->
+    <path d="M -15 -52 Q -25 -68 -28 -78" fill="none" stroke="#212121" stroke-width="2.5" stroke-linecap="round" style="fill:none;stroke:rgb(33, 33, 33);color:rgb(0, 0, 0);stroke-width:2.5px;stroke-linecap:round;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+    <circle cx="-28" cy="-80" r="4" fill="#212121" style="fill:rgb(33, 33, 33);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+    
+    <!-- 더듬이 오른쪽 -->
+    <path d="M 15 -52 Q 25 -68 28 -78" fill="none" stroke="#212121" stroke-width="2.5" stroke-linecap="round" style="fill:none;stroke:rgb(33, 33, 33);color:rgb(0, 0, 0);stroke-width:2.5px;stroke-linecap:round;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+    <circle cx="28" cy="-80" r="4" fill="#212121" style="fill:rgb(33, 33, 33);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+    
+    <!-- 비행 경로 (점선) -->
+    <path d="M -85 50 Q -60 80 -40 60 Q -20 40 0 60 Q 20 80 40 60 Q 60 40 85 60" fill="none" stroke="#F9A825" stroke-width="1.5" stroke-dasharray="3 4" opacity="0.7" style="fill:none;stroke:rgb(249, 168, 37);color:rgb(0, 0, 0);stroke-width:1.5px;stroke-dasharray:3px, 4px;stroke-linecap:butt;stroke-linejoin:miter;opacity:0.7;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+  </g>
+
+  <!-- Mobee 로고타입 -->
+  <text x="314.96" y="135" font-family="Arial, sans-serif" font-size="120" font-weight="800" fill="#212121" letter-spacing="-3" style="fill:rgb(33, 33, 33);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:Arial, sans-serif;font-size:120px;font-weight:800;text-anchor:start;dominant-baseline:auto">Mobee</text>
+  
+  <!-- 한글 서브타이틀 -->
+  <text x="314.96" y="180" font-family="'Malgun Gothic', sans-serif" font-size="26" font-weight="500" fill="#212121" style="fill:rgb(33, 33, 33);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Malgun Gothic&quot;, sans-serif;font-size:26px;font-weight:500;text-anchor:start;dominant-baseline:auto">모두의 AI 비서, 모비</text>
+  
+  <!-- 황금 강조선 -->
+  <rect x="320" y="200" width="280" height="3" fill="#FFC107" style="fill:rgb(255, 193, 7);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+  
+  <!-- 슬로건 (영문) -->
+  <text x="314.96" y="225" font-family="Arial, sans-serif" font-size="14" font-style="italic" fill="#F9A825" letter-spacing="1" style="fill:rgb(249, 168, 37);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:Arial, sans-serif;font-size:14px;font-weight:400;font-style:italic;text-anchor:start;dominant-baseline:auto">My + Our + Bridge + Everyone + Empowerment</text>
+  
+  <!-- 하단 슬로건 -->
+  <line x1="80" y1="280" x2="600" y2="280" stroke="#FFC107" stroke-width="2" style="fill:rgb(0, 0, 0);stroke:rgb(255, 193, 7);color:rgb(0, 0, 0);stroke-width:2px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Anthropic Sans&quot;, -apple-system, &quot;system-ui&quot;, &quot;Segoe UI&quot;, sans-serif;font-size:16px;font-weight:400;text-anchor:start;dominant-baseline:auto"/>
+  <text x="340" y="310" font-family="'Malgun Gothic', sans-serif" font-size="18" font-style="italic" fill="#212121" text-anchor="middle" style="fill:rgb(33, 33, 33);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:&quot;Malgun Gothic&quot;, sans-serif;font-size:18px;font-weight:400;font-style:italic;text-anchor:middle;dominant-baseline:auto">"따로 또 같이 — 개인의 비서이자, 모두를 잇는 비서"</text>
+  <text x="340" y="335" font-family="Arial, sans-serif" font-size="13" fill="#757575" text-anchor="middle" letter-spacing="2" style="fill:rgb(117, 117, 117);stroke:none;color:rgb(0, 0, 0);stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;opacity:1;font-family:Arial, sans-serif;font-size:13px;font-weight:400;text-anchor:middle;dominant-baseline:auto">Buzzing with Ideas, Together</text>
+</svg>

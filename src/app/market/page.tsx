@@ -2,11 +2,12 @@
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
-import { ShoppingBag, TrendingUp, Sparkles, Gift, ArrowRight } from "lucide-react";
+import { ShoppingBag, TrendingUp, Sparkles, Gift, ArrowRight, Lock } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { AgentCard } from "@/components/agent-card";
+import { LoginGate } from "@/components/login-gate";
 import { agents, getHotAgents, getNewAgents, getFreeAgents } from "@/data/agents";
 import { categories } from "@/data/categories";
 import { formatPrice, formatCount, cn } from "@/lib/utils";
@@ -97,8 +98,8 @@ export default function MarketPage() {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
             {topPicks.map((agent, i) => (
-              <Link key={agent.id} href={`/market/${agent.id}`}>
-                <Card className="relative overflow-hidden hover:shadow-xl transition-all group">
+              <Card key={agent.id} className="relative overflow-hidden hover:shadow-xl transition-all group">
+                <Link href={`/market/${agent.id}`}>
                   <div className="absolute top-3 left-3 z-10 w-10 h-10 rounded-full bg-brand text-ink-900 font-extrabold text-lg flex items-center justify-center">
                     {i + 1}
                   </div>
@@ -107,23 +108,33 @@ export default function MarketPage() {
                       {agent.thumbnail}
                     </span>
                   </div>
-                  <div className="p-5">
+                  <div className="px-5 pt-5 pb-3">
                     <Badge variant="outline" className="mb-2 text-xs">
                       {agent.category}
                     </Badge>
                     <h3 className="font-bold text-base mb-1 line-clamp-2">{agent.name}</h3>
                     <p className="text-sm text-ink-500 line-clamp-2 mb-3">{agent.description}</p>
-                    <div className="flex items-center justify-between pt-3 border-t border-ink-50">
-                      <div className="text-xs text-ink-500">
-                        ⭐ {agent.rating} · 구매 {formatCount(agent.orderCount)}
-                      </div>
-                      <div className="font-extrabold text-lg">
+                    <div className="flex items-center justify-between text-xs text-ink-500 pt-3 border-t border-ink-50">
+                      <span>⭐ {agent.rating} · 구매 {formatCount(agent.orderCount)}</span>
+                      <span className="font-extrabold text-lg text-ink-900">
                         {agent.isFree ? "무료" : `${formatPrice(agent.startPrice)}원`}
-                      </div>
+                      </span>
                     </div>
                   </div>
-                </Card>
-              </Link>
+                </Link>
+                <div className="px-5 pb-5">
+                  <LoginGate
+                    action="구매"
+                    description={`${agent.name}을(를) 구매하려면 회원 로그인이 필요해요. 결제·다운로드·이력은 회원만 가능합니다.`}
+                    className="block w-full"
+                  >
+                    <span className="inline-flex items-center justify-center gap-2 h-11 w-full rounded-lg bg-ink-900 text-white font-semibold text-sm hover:bg-ink-700 transition-colors">
+                      <Lock className="h-3.5 w-3.5" />
+                      {agent.isFree ? "무료 받기" : "구매하기"}
+                    </span>
+                  </LoginGate>
+                </div>
+              </Card>
             ))}
           </div>
         </div>

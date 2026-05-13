@@ -16,6 +16,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
+import { LoginGate } from "@/components/login-gate";
 import { posts, popularPosts } from "@/data/community";
 import { formatCount, cn } from "@/lib/utils";
 
@@ -78,10 +79,15 @@ export default function CommunityPage() {
                   className="pl-9 h-11 w-64"
                 />
               </div>
-              <Button variant="brand" size="lg">
-                <PenSquare className="h-4 w-4 mr-1" />
-                글쓰기
-              </Button>
+              <LoginGate
+                action="글쓰기"
+                description="활용 사례·리뷰·질문 모두 회원이 작성합니다. 둘러보기와 검색은 회원 없이도 자유롭게 가능해요."
+              >
+                <span className="inline-flex items-center justify-center h-12 px-7 rounded-lg bg-brand text-ink-900 font-semibold hover:bg-brand-400 shadow-sm">
+                  <PenSquare className="h-4 w-4 mr-1" />
+                  글쓰기
+                </span>
+              </LoginGate>
             </div>
           </div>
 

@@ -1,7 +1,8 @@
 import Link from "next/link";
 import { Logo } from "./logo";
 import { Button } from "@/components/ui/button";
-import { Bell, MessageSquare, Search } from "lucide-react";
+import { LoginGate } from "@/components/login-gate";
+import { Bell, MessageSquare, Search, Lock } from "lucide-react";
 
 const navItems = [
   { label: "에이전트 요청", href: "/request" },
@@ -33,12 +34,17 @@ export function Header() {
           <Button variant="ghost" size="icon" className="hidden md:inline-flex">
             <Search className="h-5 w-5" />
           </Button>
-          <Button variant="ghost" size="icon" className="hidden md:inline-flex">
-            <Bell className="h-5 w-5" />
-          </Button>
-          <Button variant="ghost" size="icon" className="hidden md:inline-flex">
-            <MessageSquare className="h-5 w-5" />
-          </Button>
+          <LoginGate action="알림" description="알림함은 매칭·메시지가 도착할 때 받아볼 수 있어요. 회원만 사용 가능합니다.">
+            <span className="hidden md:inline-flex h-10 w-10 items-center justify-center rounded-lg hover:bg-ink-50 text-ink-700 relative">
+              <Bell className="h-5 w-5" />
+              <span className="absolute top-2 right-2 h-1.5 w-1.5 rounded-full bg-brand" />
+            </span>
+          </LoginGate>
+          <LoginGate action="메시지" description="제작자·매칭 상대와의 채팅은 회원만 가능해요.">
+            <span className="hidden md:inline-flex h-10 w-10 items-center justify-center rounded-lg hover:bg-ink-50 text-ink-700">
+              <MessageSquare className="h-5 w-5" />
+            </span>
+          </LoginGate>
 
           <div className="hidden md:flex items-center gap-2 ml-2">
             <Button variant="ghost" size="sm" asChild>
@@ -47,9 +53,15 @@ export function Header() {
             <Button variant="outline" size="sm" asChild>
               <Link href="/signup">회원가입</Link>
             </Button>
-            <Button variant="brand" size="sm" asChild>
-              <Link href="/agents/register">에이전트 등록하기</Link>
-            </Button>
+            <LoginGate
+              action="에이전트 등록"
+              description="제작자로 비서를 등록하려면 본인 인증과 정산 정보가 필요해 회원가입 후 진행해주세요."
+            >
+              <span className="inline-flex items-center justify-center h-9 px-3 rounded-lg bg-brand text-ink-900 font-semibold text-sm hover:bg-brand-400 shadow-sm">
+                <Lock className="h-3 w-3 mr-1" />
+                에이전트 등록하기
+              </span>
+            </LoginGate>
           </div>
 
           <Button variant="ghost" size="icon" className="md:hidden">

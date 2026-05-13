@@ -2,11 +2,12 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { Check, ArrowLeft, ArrowRight, Sparkles, Clock, Users, CheckCircle2 } from "lucide-react";
+import { Check, ArrowLeft, ArrowRight, Sparkles, Clock, Users, CheckCircle2, Lock } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
+import { LoginGate } from "@/components/login-gate";
 import { categories } from "@/data/categories";
 import { cn } from "@/lib/utils";
 
@@ -309,6 +310,16 @@ export default function RequestPage() {
                 </div>
               </div>
 
+              <Card className="bg-brand-50 border-0 p-4 mb-5 flex items-start gap-3">
+                <Lock className="h-5 w-5 text-ink-900 shrink-0 mt-0.5" />
+                <div className="text-sm">
+                  <div className="font-bold text-ink-900 mb-0.5">최종 등록은 회원만 가능해요</div>
+                  <div className="text-ink-700">
+                    제안을 받고 매칭을 진행하려면 알림·메시지 채널이 필요해 회원가입이 필요해요. 둘러보기·요청서 작성은 자유롭게 가능합니다.
+                  </div>
+                </div>
+              </Card>
+
               <Card className="bg-ink-50/60 border-0 p-5">
                 <div className="text-sm font-semibold text-ink-900 mb-3">요청서를 등록하면</div>
                 <div className="space-y-2">
@@ -338,15 +349,35 @@ export default function RequestPage() {
               <ArrowLeft className="h-4 w-4 mr-1" />
               이전
             </Button>
-            <Button
-              variant="brand"
-              size="lg"
-              onClick={() => setStep(step + 1)}
-              disabled={!canNext()}
-            >
-              {step === totalSteps ? "요청 등록하기" : "다음 단계"}
-              <ArrowRight className="h-4 w-4 ml-1" />
-            </Button>
+            {step === totalSteps ? (
+              canNext() ? (
+                <LoginGate
+                  action="요청 등록"
+                  description="요청서를 등록하면 제작자들이 제안을 보내드리는데, 제안 수신과 매칭 진행은 회원 채널이 필요해요."
+                  className="inline-flex"
+                >
+                  <span className="inline-flex items-center justify-center h-12 px-7 rounded-lg bg-brand text-ink-900 font-semibold text-base hover:bg-brand-400 shadow-sm">
+                    <Lock className="h-4 w-4 mr-2" />
+                    회원으로 요청 등록
+                  </span>
+                </LoginGate>
+              ) : (
+                <Button variant="brand" size="lg" disabled>
+                  <Lock className="h-4 w-4 mr-2" />
+                  회원으로 요청 등록
+                </Button>
+              )
+            ) : (
+              <Button
+                variant="brand"
+                size="lg"
+                onClick={() => setStep(step + 1)}
+                disabled={!canNext()}
+              >
+                다음 단계
+                <ArrowRight className="h-4 w-4 ml-1" />
+              </Button>
+            )}
           </div>
         </Card>
 

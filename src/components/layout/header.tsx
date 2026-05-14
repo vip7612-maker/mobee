@@ -9,6 +9,7 @@ const navItems = [
   { label: "에이전트 찾기", href: "/agents" },
   { label: "마켓", href: "/market" },
   { label: "커뮤니티", href: "/community" },
+  { label: "개발자", href: "/dev", badge: "DEV" },
 ];
 
 export function Header() {
@@ -22,9 +23,14 @@ export function Header() {
               <Link
                 key={item.href}
                 href={item.href}
-                className="px-3 py-2 text-sm font-medium text-ink-700 hover:text-ink-900 hover:bg-ink-50 rounded-lg transition-colors"
+                className="px-3 py-2 text-sm font-medium text-ink-700 hover:text-ink-900 hover:bg-ink-50 rounded-lg transition-colors inline-flex items-center gap-1.5"
               >
                 {item.label}
+                {item.badge && (
+                  <span className="text-[9px] font-mono tracking-widest bg-ink-900 text-brand px-1.5 py-0.5 rounded">
+                    {item.badge}
+                  </span>
+                )}
               </Link>
             ))}
           </nav>

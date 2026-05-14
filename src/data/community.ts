@@ -267,7 +267,7 @@ export const posts: Post[] = [
     excerpt: "지원자 200명 이력서를 5분만에 우선순위로 정리해줍니다. 면접 질문도 자동 생성.",
     author: "스타트업HR",
     authorBadge: "👥 HR매니저",
-    thumbnail: "🧑‍💼",
+    thumbnail: "📋",
     views: 4912,
     comments: 41,
     likes: 198,

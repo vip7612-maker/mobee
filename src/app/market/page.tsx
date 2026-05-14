@@ -2,16 +2,25 @@
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
-import { ShoppingBag, TrendingUp, Sparkles, Gift, ArrowRight, Lock, Cpu } from "lucide-react";
+import { ShoppingBag, TrendingUp, Sparkles, Gift, ArrowRight, Lock } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { AgentCard } from "@/components/agent-card";
 import { LoginGate } from "@/components/login-gate";
-import { BeeMark } from "@/components/layout/logo";
+import { RobotFace } from "@/components/robot-face";
 import { agents, getHotAgents, getNewAgents, getFreeAgents } from "@/data/agents";
 import { categories } from "@/data/categories";
-import { formatPrice, formatCount, cn, getPersonaName, getPersonaFull, getPersonaCode } from "@/lib/utils";
+import {
+  formatPrice,
+  formatCount,
+  cn,
+  getPersonaName,
+  getPersonaFull,
+  getPersonaCode,
+  getRobotAccent,
+  getRobotShellTone,
+} from "@/lib/utils";
 
 type Tab = "all" | "hot" | "new" | "free";
 
@@ -102,37 +111,45 @@ export default function MarketPage() {
               const persona = getPersonaName(agent.id);
               const full = getPersonaFull(agent.id);
               const code = getPersonaCode(agent.id);
-              const bg = i === 0 ? "bg-brand" : "bg-ink-900";
-              const textColor = i === 0 ? "text-ink-900" : "text-brand";
-              const subColor = i === 0 ? "text-ink-900/60" : "text-white/50";
-              const grid = i === 0 ? "rgba(33,33,33,0.08)" : "rgba(255,193,7,0.08)";
-              const beeOpacity = i === 0 ? "opacity-50" : "opacity-40";
+              const accent = getRobotAccent(agent.categoryId);
+              const tone = getRobotShellTone(agent.id);
               return (
                 <Card key={agent.id} className="relative overflow-hidden hover:shadow-xl transition-all group">
                   <Link href={`/market/${agent.id}`}>
                     <div className="absolute top-3 left-3 z-20 w-10 h-10 rounded-full bg-brand text-ink-900 font-extrabold text-lg flex items-center justify-center shadow-lg">
                       {i + 1}
                     </div>
-                    <div className={`aspect-[16/10] relative ${bg} overflow-hidden`}>
-                      <div
-                        className="absolute inset-0 opacity-60"
-                        style={{
-                          backgroundImage: `linear-gradient(${grid} 1px, transparent 1px), linear-gradient(90deg, ${grid} 1px, transparent 1px)`,
-                          backgroundSize: "28px 28px",
-                        }}
-                      />
-                      <div className="absolute inset-0 flex flex-col items-center justify-center group-hover:scale-[1.04] transition-transform duration-500">
-                        <BeeMark className={`h-9 w-9 mb-2 ${beeOpacity}`} />
-                        <div className={`text-[10px] font-mono tracking-[0.3em] uppercase ${subColor}`}>
-                          Mobee Model
+                    <div className="aspect-[16/10] relative bg-ink-900 overflow-hidden">
+                      <div className="absolute inset-0 transition-transform duration-500 group-hover:scale-[1.04]">
+                        <RobotFace
+                          serial={code}
+                          accent={accent}
+                          shellTone={tone}
+                          showSerial={false}
+                        />
+                      </div>
+                      {/* 우상단 시리얼 라벨 */}
+                      <div className="absolute top-3 right-3 z-10 text-right">
+                        <div
+                          className="text-[9px] font-mono tracking-[0.3em] uppercase"
+                          style={{ color: accent, opacity: 0.9 }}
+                        >
+                          Mobee Unit
                         </div>
-                        <div className={`font-extrabold text-6xl tracking-tight ${textColor} mt-1`}>
+                        <div className="font-extrabold text-2xl text-white tracking-tight leading-none mt-0.5">
                           {code}
                         </div>
-                        <div className={`mt-2 flex items-center gap-1 text-[10px] font-mono ${subColor}`}>
-                          <Cpu className="h-2.5 w-2.5" />
-                          AI · {agent.platforms[0] || "GPT-4"}
-                        </div>
+                      </div>
+                      {/* 좌하단 ONLINE */}
+                      <div className="absolute bottom-3 left-3 z-10 flex items-center gap-1.5">
+                        <span
+                          className="inline-block h-2 w-2 rounded-full animate-pulse"
+                          style={{ backgroundColor: accent, boxShadow: `0 0 8px ${accent}` }}
+                          aria-hidden
+                        />
+                        <span className="text-[9px] font-mono tracking-widest text-white/75">
+                          ONLINE · {agent.platforms[0] || "GPT-4"}
+                        </span>
                       </div>
                     </div>
                     <div className="px-5 pt-5 pb-3">
